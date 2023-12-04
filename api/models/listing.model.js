@@ -23,7 +23,7 @@ const listingSchema = new mongoose.Schema(
             enum: ["Services", "Product"],
             required: true,
         },
-        imageurls:{
+        imageUrls:{
             type: Array,
             required: true,
         },

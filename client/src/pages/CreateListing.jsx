@@ -117,7 +117,7 @@ export default function CreateListing() {
        }
 
        
-      navigate(`/listing/${data._id}`) 
+      //navigate(`/listing/${data._id}`) 
     } catch (error) {
        setError(error.message);
        setLoading(false); 
