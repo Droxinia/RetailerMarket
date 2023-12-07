@@ -155,7 +155,7 @@ export default function CreateListing() {
         </select>
 
             <input type='text' placeholder='Name' className='border p-3 rounded-lg ' id='name' maxLength='62' minLength='10' required onChange={handleChange} value={formData.name}/>
-            <textarea type='text' placeholder='Description' className='border p-3 rounded-lg ' id='description' maxLength='62' minLength='10' required onChange={handleChange} value={formData.description} />
+            <textarea type='text' placeholder='Description' className='border p-3 rounded-lg ' id='description'  required onChange={handleChange} value={formData.description} />
             <input type='text' placeholder='Address' className='border p-3 rounded-lg ' id='address'  required onChange={handleChange} value={formData.address} />
         <div className='flex items-center gap-2'>
             <input type='number' id='price'  required className='p-3 border border-gray-300 rounded-lg' min='1' max='1000000' onChange={handleChange} value={formData.price} />
