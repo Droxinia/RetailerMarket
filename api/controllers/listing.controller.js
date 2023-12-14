@@ -60,3 +60,101 @@ export const getListing =async (req, res, next) => {
       next(error);  
     }
 }
+
+// export const getListings = async (req, res, next) => {
+//     try {
+//       const limit = parseInt(req.query.limit) || 9;
+//       const startIndex = parseInt(req.query.startIndex) || 0; 
+//       let offer = req.query.offer;
+
+//       if (type === 'Services') {
+//         type = {$in: 'Services'}
+//       }
+//       if (type === 'Product') {
+//         type = {$in: 'Product'}
+//       }
+
+//       const  searchTerm = req.query.searchTerm || '';
+
+//       const sort = req.query.sort || 'createdAt';
+
+//       const order = req.query.order || 'desc';
+
+//       const listings = await Listing.find ({
+//         name: {$regex: searchTerm, $optiones: 'i'},
+//         type,
+//         address,
+//       }).sort(
+//         {[sort] : order}
+//       ).limit(limit).skip(startIndex);
+//       return res.status(200).json(listings);
+//     } catch (error) {
+//         next(error);
+//     }
+// }
+
+
+
+// export const getListings = async (req, res, next) => {
+//     try {
+//       const limit = parseInt(req.query.limit) || 9;
+//       const startIndex = parseInt(req.query.startIndex) || 0;
+  
+//       let type = req.query.type;
+//       let offer = req.query.offer;
+//       const searchTerm = req.query.searchTerm || '';
+  
+//       // Convert offer to boolean
+//       offer = offer === 'true';
+  
+//       // Filter by type if provided
+//       const typeFilter = type ? { type: type } : {};
+  
+//       // Search by name using regex
+//       const nameFilter = { name: { $regex: searchTerm, $options: 'i' } };
+  
+//       // Combine filters
+//       const filters = { ...typeFilter, ...nameFilter, offer: offer };
+  
+//       const sort = req.query.sort || 'createdAt';
+//       const order = req.query.order || 'desc';
+  
+//       const listings = await Listing.find(filters)
+//         .sort({ [sort]: order })
+//         .limit(limit)
+//         .skip(startIndex);
+  
+//       return res.status(200).json(listings);
+//     } catch (error) {
+//       next(error);
+//     }
+//   };
+  
+
+export const getListings = async (req, res, next) => {
+    try {
+      const limit = parseInt(req.query.limit) || 9;
+      const startIndex = parseInt(req.query.startIndex) || 0;
+  
+      const searchTerm = req.query.searchTerm || '';
+      const type = req.query.type || '';
+  
+      const nameFilter = searchTerm ? { name: { $regex: searchTerm, $options: 'i' } } : {};
+      const typeFilter = type ? { type: type } : {};
+  
+      const filters = { ...nameFilter, ...typeFilter };
+  
+      const sort = req.query.sort || 'createdAt';
+      const order = req.query.order || 'desc';
+  
+      const listings = await Listing.find(filters)
+        .sort({ [sort]: order })
+        .limit(limit)
+        .skip(startIndex);
+  
+      return res.status(200).json(listings);
+    } catch (error) {
+      next(error);
+    }
+  };
+  
