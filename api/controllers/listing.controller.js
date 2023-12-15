@@ -137,10 +137,14 @@ export const getListings = async (req, res, next) => {
       const startIndex = parseInt(req.query.startIndex) || 0;
   
       const searchTerm = req.query.searchTerm || '';
-      const type = req.query.type || '';
+      const type = req.query.type || 'all';
   
-      const nameFilter = searchTerm ? { name: { $regex: searchTerm, $options: 'i' } } : {};
-      const typeFilter = type ? { type: type } : {};
+      let typeFilter;
+      if (type !== 'all') {
+        typeFilter = { type: type };
+      }
+  
+      const nameFilter = searchTerm !== '' ? { name: { $regex: searchTerm, $options: 'i' } } : {};
   
       const filters = { ...nameFilter, ...typeFilter };
   
