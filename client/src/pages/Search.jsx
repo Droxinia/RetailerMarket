@@ -38,6 +38,7 @@ export default function Search() {
                 order: orderFromUrl || 'desc',
             });
         }
+        
 
         const fetchListings = async () => {
             setLoading(true);
@@ -57,25 +58,9 @@ export default function Search() {
 
     }, [location.search])
 
-    
-    // const handleChange = (e) => {
-    //     if(e.target.id === 'all' || e.target.id ==='product' || e.target.id === 'services'){
-    //         setSidebardata({...sidebardata, type: e.target.id})
-    //     }
+   
 
-    //     if(e.target.id === 'searchTerm') {
-    //         setSidebardata({...sidebardata, searchTerm:e.target.value})
-    //     }
-
-    //     if(e.target.id === 'sort_order') {
-    //         const sort = e.target.value.split('_')[0] || 'created_at';
-
-    //         const order= e.target.value.split('_') [1] || 'desc';
-
-    //         setSidebardata({...sidebardata, sort, order});
-    //     }
-
-    // };
+  
 
     const handleChange = (e) => {
         if (e.target.id === 'all' || e.target.id === 'product' || e.target.id === 'services') {
@@ -122,7 +107,8 @@ export default function Search() {
         }
         setListings([...listings, ...data]);
       };
-      
+   
+
   return (
     <div className='flex flex-col md:flex-row'>
         <div className='p-7 borrder-b-2 sm:border-r-2 md:min-h-screen'>
